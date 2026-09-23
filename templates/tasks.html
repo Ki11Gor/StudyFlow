@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyFlow | Завдання</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="app-page">
+
+    <aside class="sidebar">
+        <h2>StudyFlow</h2>
+
+        <nav>
+            <a href="/">Головна</a>
+            <a href="/subjects">Предмети</a>
+            <a href="/tasks" class="active">Завдання</a>
+            <a href="/statistics">Статистика</a>
+        </nav>
+
+        <a href="/login" class="logout-link">Вийти</a>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="page-header tasks-header">
+            <h1>Завдання</h1>
+
+            <a href="/tasks/add" class="primary-button add-task-link">
+                + Додати завдання
+            </a>
+        </div>
+
+        <div class="task-filters">
+            <button class="filter-button active" data-status="all">
+                Всі
+            </button>
+
+            <button class="filter-button" data-status="planned">
+                Заплановані
+            </button>
+
+            <button class="filter-button" data-status="in_progress">
+                В процесі
+            </button>
+
+            <button class="filter-button" data-status="completed">
+                Виконані
+            </button>
+        </div>
+
+        <p id="tasks-loading">Завантаження...</p>
+        <p id="tasks-message" class="error-message"></p>
+
+        <div id="tasks-list" class="tasks-list"></div>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
