@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyFlow | Головна</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="app-page">
+
+    <aside class="sidebar">
+        <h2>StudyFlow</h2>
+
+        <nav>
+            <a href="/" class="active">Головна</a>
+            <a href="/subjects">Предмети</a>
+            <a href="/tasks">Завдання</a>
+            <a href="/statistics">Статистика</a>
+        </nav>
+
+        <a href="/login" class="logout-link">Вийти</a>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <h1>Головна</h1>
+                <p>Вітаємо у StudyFlow!</p>
+            </div>
+        </div>
+
+        <section class="statistics-grid">
+            <div class="stat-card">
+                <span>Всього завдань</span>
+                <strong id="total-tasks">—</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Виконано</span>
+                <strong id="completed-tasks">—</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>В процесі</span>
+                <strong id="progress-tasks">—</strong>
+            </div>
+        </section>
+
+        <section class="upcoming-section">
+            <h2>Найближчі завдання</h2>
+
+            <p id="dashboard-loading">Завантаження...</p>
+            <p id="dashboard-error" class="error-message"></p>
+
+            <div id="upcoming-tasks"></div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

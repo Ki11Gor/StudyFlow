@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyFlow | Редагувати завдання</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="app-page">
+
+    <aside class="sidebar">
+        <h2>StudyFlow</h2>
+
+        <nav>
+            <a href="/">Головна</a>
+            <a href="/subjects">Предмети</a>
+            <a href="/tasks" class="active">Завдання</a>
+            <a href="/statistics">Статистика</a>
+        </nav>
+
+        <a href="/login" class="logout-link">Вийти</a>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="page-header">
+            <h1>Редагувати завдання</h1>
+        </div>
+
+        <form id="edit-task-form" class="task-form" data-task-id="{{ task_id }}">
+
+            <div class="form-group">
+                <label for="task-title">Назва завдання</label>
+                <input
+                    type="text"
+                    id="task-title"
+                    placeholder="Введіть назву"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="task-subject">Предмет</label>
+                <select id="task-subject" required>
+                    <option value="">Оберіть предмет</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="task-description">Опис</label>
+                <textarea
+                    id="task-description"
+                    placeholder="Введіть опис завдання"
+                    rows="4"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="task-deadline">Дата виконання</label>
+                <input type="date" id="task-deadline">
+            </div>
+
+            <div class="form-group">
+                <label for="task-priority">Пріоритет</label>
+                <select id="task-priority" required>
+                    <option value="low">Низький</option>
+                    <option value="medium" selected>Середній</option>
+                    <option value="high">Високий</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="task-status">Статус</label>
+                <select id="task-status" required>
+                    <option value="planned" selected>Заплановано</option>
+                    <option value="in_progress">В процесі</option>
+                    <option value="completed">Виконано</option>
+                </select>
+            </div>
+
+            <p id="task-form-message" class="error-message full-width"></p>
+
+            <div class="form-actions full-width">
+                <a href="/tasks" class="secondary-button cancel-link">
+                    Скасувати
+                </a>
+
+                <button type="submit" class="primary-button">
+                    Зберегти зміни
+                </button>
+            </div>
+
+        </form>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

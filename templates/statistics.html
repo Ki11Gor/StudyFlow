@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyFlow | Статистика</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="app-page">
+
+    <aside class="sidebar">
+        <h2>StudyFlow</h2>
+
+        <nav>
+            <a href="/">Головна</a>
+            <a href="/subjects">Предмети</a>
+            <a href="/tasks">Завдання</a>
+            <a href="/statistics" class="active">Статистика</a>
+        </nav>
+
+        <a href="/login" class="logout-link">Вийти</a>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="page-header">
+            <h1>Статистика</h1>
+        </div>
+
+        <p id="statistics-loading">Завантаження...</p>
+        <p id="statistics-message"></p>
+
+        <div id="statistics-content" class="statistics-content" style="display: none;">
+
+            <div class="statistics-cards">
+
+                <div class="statistics-card">
+                    <span>Всього завдань</span>
+                    <strong id="statistics-total">0</strong>
+                </div>
+
+                <div class="statistics-card">
+                    <span>Заплановано</span>
+                    <strong id="statistics-planned">0</strong>
+                </div>
+
+                <div class="statistics-card">
+                    <span>В процесі</span>
+                    <strong id="statistics-progress">0</strong>
+                </div>
+
+                <div class="statistics-card">
+                    <span>Виконано</span>
+                    <strong id="statistics-completed">0</strong>
+                </div>
+
+            </div>
+
+            <section class="progress-section">
+                <h2>Прогрес виконання</h2>
+
+                <div class="progress-info">
+                    <span>Виконано завдань</span>
+                    <strong id="statistics-percent">0%</strong>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="statistics-progress-bar" class="progress-bar-fill"></div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
