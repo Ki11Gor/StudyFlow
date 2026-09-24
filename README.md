@@ -122,3 +122,36 @@ Python + Flask
 Flask-SQLAlchemy
     ↓
 SQLite
+Структура проєкту
+StudyFlow/
+│
+├── app.py
+├── models.py
+├── requirements.txt
+├── README.md
+│
+├── routes/
+│   ├── auth.py
+│   ├── subjects.py
+│   ├── tasks.py
+│   └── helpers.py
+│
+├── templates/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── subjects.html
+│   ├── tasks.html
+│   ├── add_task.html
+│   ├── edit_task.html
+│   └── statistics.html
+│
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   │
+│   └── js/
+│       └── script.js
+│
+└── tests/
+    └── test_app.py
