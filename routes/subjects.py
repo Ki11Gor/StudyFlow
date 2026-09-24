@@ -1,12 +1,8 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify
 from models import db, Subject
+from routes.helpers import get_current_user_id
 
 subjects_bp = Blueprint("subjects", __name__)
-
-
-def get_current_user_id():
-    return session.get("user_id")
-
 
 @subjects_bp.route("/api/subjects", methods=["GET"])
 def get_subjects():

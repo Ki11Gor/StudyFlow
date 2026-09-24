@@ -1,13 +1,14 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify
 from datetime import datetime
+
 from models import db, Task, Subject
+from routes.helpers import get_current_user_id
+
 
 tasks_bp = Blueprint("tasks", __name__)
 
-
-def get_current_user_id():
-    return session.get("user_id")
-
+VALID_PRIORITIES = ["low", "medium", "high"]
+VALID_STATUSES = ["planned", "in_progress", "completed"]
 
 def task_to_dict(task):
     return {
@@ -20,6 +21,21 @@ def task_to_dict(task):
         "subject_id": task.subject_id
     }
 
+def get_user_task(task_id, user_id):
+    return Task.query.filter_by(
+        id=task_id,
+        user_id=user_id
+    ).first()
+
+
+def parse_deadline(deadline_value):
+    if not deadline_value:
+        return None
+
+    return datetime.strptime(
+        deadline_value,
+        "%Y-%m-%d"
+    ).date()
 
 @tasks_bp.route("/api/tasks", methods=["GET"])
 def get_tasks():
@@ -42,10 +58,7 @@ def get_task(task_id):
     if not user_id:
         return jsonify({"error": "Необхідна авторизація"}), 401
 
-    task = Task.query.filter_by(
-        id=task_id,
-        user_id=user_id
-    ).first()
+    task = get_user_task(task_id, user_id)
 
     if not task:
         return jsonify({"error": "Завдання не знайдено"}), 404
@@ -131,10 +144,7 @@ def update_task(task_id):
     if not user_id:
         return jsonify({"error": "Необхідна авторизація"}), 401
 
-    task = Task.query.filter_by(
-        id=task_id,
-        user_id=user_id
-    ).first()
+    task = get_user_task(task_id, user_id)
 
     if not task:
         return jsonify({"error": "Завдання не знайдено"}), 404
@@ -196,10 +206,7 @@ def delete_task(task_id):
     if not user_id:
         return jsonify({"error": "Необхідна авторизація"}), 401
 
-    task = Task.query.filter_by(
-        id=task_id,
-        user_id=user_id
-    ).first()
+    task = get_user_task(task_id, user_id)
 
     if not task:
         return jsonify({"error": "Завдання не знайдено"}), 404
